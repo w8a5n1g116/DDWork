@@ -1,0 +1,71 @@
+﻿@model DDWork.Models.Contract
+
+@{
+    ViewData["Title"] = "详情";
+}
+
+<h1>详情</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.customer.name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.customer.name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.material.name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.material.name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.weight)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.weight)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.print_weight)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.print_weight)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.print_price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.print_price)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.fine)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.fine)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.contract_price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.contract_price)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.delivery_date)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.delivery_date)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.create_time)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.create_time)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.id" class="btn btn-primary">编辑</a> |
+    <a asp-action="Index" class="btn btn-info">返回列表</a>
+</div>

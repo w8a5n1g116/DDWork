@@ -1,0 +1,58 @@
+﻿@{
+    ViewData["Title"] = "主页";
+}
+
+<div class="text-center">
+    <h1 class="display-4">欢迎使用</h1>
+    <p> 期待您一天工作开心愉快！ </p>
+</div>
+
+<script>
+    $(document).ready(function () {
+        dd.ready(function () {
+            // dd.ready参数为回调函数，在环境准备就绪时触发，jsapi的调用需要保证在该回调函数触发后调用，否则无效。
+            dd.runtime.permission.requestAuthCode({
+                corpId: "ding5459285f77f56b96a1320dcb25e91351",
+                onSuccess: function (result) {
+                    /*{
+                        code: 'hYLK98jkf0m' //string authCode
+                    }*/
+
+                    var noUser = true;
+                    @if(ViewBag.user != null)
+                    {
+                        <text>
+                    noUser = false;
+                        </text>
+                    }
+
+                    if (noUser) {
+                        $('#loading').modal('show');
+
+                        $.get('/Home/GetUserInfo?code=' + result.code, function (data) {
+                            $('#loading').modal('hide');
+                            if (data == null || data == "" || data == undefined) {
+                                window.location = '/Home/Index';
+                            } 
+
+                        });
+                    }
+
+                },
+                onFail: function (err) { }
+
+            });
+        });
+
+        dd.error(function (error) {
+            /**
+             {
+                errorMessage:"错误信息",// errorMessage 信息会展示出钉钉服务端生成签名使用的参数，请和您生成签名的参数作对比，找出错误的参数
+                errorCode: "错误码"
+             }
+            **/
+            alert('dd error: ' + JSON.stringify(error));
+        });
+
+    });
+</script>

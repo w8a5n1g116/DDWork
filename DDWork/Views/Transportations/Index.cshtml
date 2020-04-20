@@ -1,0 +1,128 @@
+﻿@model IEnumerable<DDWork.Models.Transportation>
+
+@{
+    ViewData["Title"] = "运输单管理";
+}
+
+    <h1>运输单管理</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-info">发货</a>
+</p>
+<div class="table-responsive">
+    <table class="table text-nowrap">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.customer.name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.material.name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.car.car_no)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.supply.name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.shareholder.name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.material_weight)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.carriage_weight)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.material_unit_price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.carriage_unit_price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.material_count_price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.carriage_count_price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.start_date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.end_date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.create_time)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.customer.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.material.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.car.car_no)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.supply.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.shareholder.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.material_weight)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.carriage_weight)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.material_unit_price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.carriage_unit_price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.material_count_price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.carriage_count_price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.start_date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.end_date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.create_time)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.id" class="btn btn-info">编辑</a>
+                </td>
+                @if (string.IsNullOrEmpty(item.end_date))
+                {
+                    <td>
+                        <a asp-action="GetOver" asp-route-id="@item.id" class="btn btn-info">收货</a>
+                    </td>
+                }
+
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.id" class="btn btn-success">详情</a>
+                </td>
+                <td>
+                    <a asp-action="Delete" asp-route-id="@item.id" class="btn btn-danger">删除</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

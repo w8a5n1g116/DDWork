@@ -1,0 +1,55 @@
+﻿@model DDWork.Models.Car
+
+@{
+    ViewData["Title"] = "删除";
+}
+
+<h1>删除</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.car_no)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.car_no)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.car_load)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.car_load)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.bank_no)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.bank_no)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.bank_name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.bank_name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.create_time)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.create_time)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="id" />
+        <input type="submit" value="删除" class="btn btn-danger" /> |
+        <a asp-action="Index" class="btn btn-info">返回列表</a>
+    </form>
+</div>

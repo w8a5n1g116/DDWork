@@ -1,0 +1,102 @@
+﻿@model DDWork.Models.Transportation
+
+@{
+    ViewData["Title"] = "详情";
+}
+
+<h1>详情</h1>
+
+<div>
+
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.customer.name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.customer.name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.material.name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.material.name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.car.car_no)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.car.car_no)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.supply.name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.supply.name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.shareholder.name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.shareholder.name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.material_weight)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.material_weight)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.carriage_weight)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.carriage_weight)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.material_unit_price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.material_unit_price)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.carriage_unit_price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.carriage_unit_price)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.material_count_price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.material_count_price)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.carriage_count_price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.carriage_count_price)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.start_date)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.start_date)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.end_date)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.end_date)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.create_time)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.create_time)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.id" class="btn btn-primary">编辑</a> |
+    <a asp-action="Index" class="btn btn-info">返回列表</a>
+</div>

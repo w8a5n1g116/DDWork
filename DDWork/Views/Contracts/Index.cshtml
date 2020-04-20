@@ -1,0 +1,90 @@
+﻿@model IEnumerable<DDWork.Models.Contract>
+
+@{
+    ViewData["Title"] = "合同管理";
+}
+
+    <h1>合同管理</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-info">添加</a>
+</p>
+<div class="table-responsive">
+    <table class="table text-nowrap">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.customer.name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.material.name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.weight)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.print_weight)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.print_price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.fine)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.contract_price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.delivery_date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.create_time)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.customer.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.material.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.weight)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.print_weight)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.print_price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fine)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.contract_price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.delivery_date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.create_time)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.id" class="btn btn-info">编辑</a>
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.id" class="btn btn-success">详情</a>
+                </td>
+                <td>
+                    <a asp-action="Delete" asp-route-id="@item.id" class="btn btn-danger">删除</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

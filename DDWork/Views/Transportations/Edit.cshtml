@@ -1,0 +1,231 @@
+﻿@model DDWork.Models.Transportation
+
+@{
+    ViewData["Title"] = "编辑";
+}
+
+<h1>编辑</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id" />
+            <div class="form-group">
+                <label asp-for="customer.name" class="control-label"></label>
+                <select asp-for="customer.id" class="form-control">
+                    @foreach (Customer c in ViewBag.Customers)
+                    {
+                        @if (Model.customer != null && c.id == Model.customer.id)
+                        {
+                            <option value="@c.id" selected>@c.name</option>
+                        }
+                        else
+                        {
+                            <option value="@c.id">@c.name</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="material.name" class="control-label"></label>
+                <select asp-for="material.id" class="form-control">
+                    @foreach (Material m in ViewBag.Materials)
+                    {
+                        @if (Model.material != null && m.id == Model.material.id)
+                        {
+                            <option value="@m.id" selected>@m.name</option>
+                        }
+                        else
+                        {
+                            <option value="@m.id">@m.name</option>
+                        }
+                    }
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="car.car_no" class="control-label"></label>
+                <select asp-for="car.id" class="form-control">
+                    @foreach (Car c in ViewBag.Cars)
+                    {
+                        
+                        @if (Model.car != null && c.id == Model.car.id)
+                        {
+                            <option value="@c.id" selected>@c.car_no</option>
+                        }
+                        else
+                        {
+                            <option value="@c.id">@c.car_no</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="supply.name" class="control-label"></label>
+                <select asp-for="supply.id" class="form-control">
+                    @foreach (Supply s in ViewBag.Supplies)
+                    {
+                        @if (Model.supply != null && s.id == Model.supply.id)
+                        {
+                            <option value="@s.id" selected>@s.name</option>
+                        }
+                        else
+                        {
+                            <option value="@s.id">@s.name</option>
+                        }
+
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="shareholder.name" class="control-label"></label>
+                <select asp-for="shareholder.id" class="form-control">
+                    @foreach (Shareholder s in ViewBag.Shareholders)
+                    {
+                        @if (Model.shareholder != null && s.id == Model.shareholder.id)
+                        {
+                            <option value="@s.id" selected>@s.name</option>
+                        }
+                        else
+                        {
+                            <option value="@s.id">@s.name</option>
+                        }
+
+                    }
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="material_weight" class="control-label"></label>
+                <input asp-for="material_weight" class="form-control" />
+                <span asp-validation-for="material_weight" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="carriage_weight" class="control-label"></label>
+                <input asp-for="carriage_weight" class="form-control" />
+                <span asp-validation-for="carriage_weight" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="material_unit_price" class="control-label"></label>
+                <input asp-for="material_unit_price" disabled class="form-control" />
+                <span asp-validation-for="material_unit_price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="carriage_unit_price" class="control-label"></label>
+                <input asp-for="carriage_unit_price" class="form-control" />
+                <span asp-validation-for="carriage_unit_price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="material_count_price" class="control-label"></label>
+                <input asp-for="material_count_price" class="form-control" />
+                <span asp-validation-for="material_count_price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="carriage_count_price" class="control-label"></label>
+                <input asp-for="carriage_count_price" class="form-control" />
+                <span asp-validation-for="carriage_count_price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="start_date" class="control-label"></label>
+                <input asp-for="start_date" class="form-control" />
+                <span asp-validation-for="start_date" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="end_date" class="control-label"></label>
+                <input asp-for="end_date" class="form-control" />
+                <span asp-validation-for="end_date" class="text-danger"></span>
+            </div>*@
+
+            <div class="form-group">
+                <input type="submit" value="保存" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-info">返回列表</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<script>
+    MaterailUnitPirces = new Array();
+
+    @foreach (MaterialUnitPrice mup in ViewBag.MaterialUnitPrices)
+    {
+        <text>
+    MaterailUnitPirces.push({ id: '@mup.material.id', price:@mup.price});
+        </text>
+    }
+
+
+    $(function () {
+
+        changemup();
+
+        $('#material_id').change(function () {
+            changemup();
+        })
+
+        function changemup() {
+            var v = $('#material_id').val();
+
+            $.each(MaterailUnitPirces, function (index, value) {
+                if (v == value.id) {
+                    $('#material_unit_price').val(value.price);
+                }
+            })
+        }
+
+
+        $('#material_weight').blur(function () {
+
+            var weight = $('#material_weight').val();
+
+            var unitprice = $('#material_unit_price').val()
+
+            var count = unitprice * weight;
+
+            $('#material_count_price').val(count);
+        });
+
+        $('#carriage_weight').blur(function () {
+
+            var weight = $('#carriage_weight').val();
+
+            var unitprice = $('#carriage_unit_price').val()
+
+            var count = unitprice * weight;
+
+            $('#carriage_count_price').val(count);
+        });
+
+        $('#material_unit_price').blur(function () {
+
+            var weight = $('#material_weight').val();
+
+            var unitprice = $('#material_unit_price').val()
+
+            var count = unitprice * weight;
+
+            $('#material_count_price').val(count);
+        });
+
+        $('#carriage_unit_price').blur(function () {
+
+            var weight = $('#carriage_weight').val();
+
+            var unitprice = $('#carriage_unit_price').val()
+
+            var count = unitprice * weight;
+
+            $('#carriage_count_price').val(count);
+        });
+    });
+</script>

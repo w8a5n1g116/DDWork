@@ -1,0 +1,74 @@
+﻿@model IEnumerable<DDWork.Models.Car>
+
+@{
+    ViewData["Title"] = "车辆管理";
+}
+
+<h1>车辆管理</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-info">添加</a>
+</p>
+<div class="table-responsive">
+    <table class="table text-nowrap">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.car_no)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.car_load)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.bank_no)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.bank_name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.create_time)
+                </th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.car_no)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.car_load)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.bank_no)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.bank_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.create_time)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.id" class="btn btn-info">编辑</a>
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.id" class="btn btn-success">详情</a>
+                </td>
+                <td>
+                    <a asp-action="Delete" asp-route-id="@item.id" class="btn btn-danger">删除</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
