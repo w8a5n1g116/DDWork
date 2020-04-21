@@ -104,9 +104,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.create_time)
                 </td>
-                <td>
+                @*<td>
                     <a asp-action="Edit" asp-route-id="@item.id" class="btn btn-info">编辑</a>
-                </td>
+                </td>*@
                 @if (string.IsNullOrEmpty(item.end_date))
                 {
                     <td>
