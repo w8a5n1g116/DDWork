@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DDWork.Models;
+using OfficeOpenXml;
 
 namespace DDWork.Controllers
 {
@@ -114,6 +115,19 @@ namespace DDWork.Controllers
             return View(viewList);
         }
 
-
+        public string CreateAndGetExcelFilePath()
+        {
+            using (var package = new ExcelPackage())
+            {
+                var worksheet = package.Workbook.Worksheets.Add("Sheet1");
+                //Add the headers
+                worksheet.Cells[1, 1].Value = "ID";
+                worksheet.Cells[1, 2].Value = "Product";
+                worksheet.Cells[1, 3].Value = "Quantity";
+                worksheet.Cells[1, 4].Value = "Price";
+                worksheet.Cells[1, 5].Value = "Value";
+            }
+            return "";
+        }
     }
 }
