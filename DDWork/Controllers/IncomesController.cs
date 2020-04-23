@@ -63,7 +63,7 @@ namespace DDWork.Controllers
                 Customer customer = _context.customer.Where(p => p.id == income.customer.id).First();
 
                 income.customer = customer;
-                income.create_time = DateTime.Now.ToString();
+                income.create_time = DateTime.Now.ToString("yyyy.MM.dd HH:mm:ss");
                 _context.Add(income);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -108,7 +108,7 @@ namespace DDWork.Controllers
 
                     income.customer = customer;
 
-                    income.create_time = DateTime.Now.ToString();
+                    income.create_time = DateTime.Now.ToString("yyyy.MM.dd HH:mm:ss");
                     _context.Update(income);
                     await _context.SaveChangesAsync();
                 }

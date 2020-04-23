@@ -28,6 +28,12 @@
             @Html.DisplayFor(model => model.weight)
         </dd>
         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.unit_price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.unit_price)
+        </dd>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.print_weight)
         </dt>
         <dd class="col-sm-10">
@@ -40,10 +46,34 @@
             @Html.DisplayFor(model => model.print_price)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.fine)
+            @Html.DisplayNameFor(model => model.should_receive_price)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.fine)
+            @Html.DisplayFor(model => model.should_receive_price)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.real_receive_price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.real_receive_price)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.debt_price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.debt_price)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.unprint_weight)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.unprint_weight)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.unprint_price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.unprint_price)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.contract_price)

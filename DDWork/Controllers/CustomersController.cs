@@ -57,7 +57,7 @@ namespace DDWork.Controllers
         {
             if (ModelState.IsValid)
             {
-                customer.create_time = DateTime.Now.ToString();
+                customer.create_time = DateTime.Now.ToString("yyyy.MM.dd HH:mm:ss");
                 _context.Add(customer);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -97,7 +97,7 @@ namespace DDWork.Controllers
             {
                 try
                 {
-                    customer.create_time = DateTime.Now.ToString();
+                    customer.create_time = DateTime.Now.ToString("yyyy.MM.dd HH:mm:ss");
                     _context.Update(customer);
                     await _context.SaveChangesAsync();
                 }

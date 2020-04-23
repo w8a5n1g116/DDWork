@@ -63,7 +63,7 @@ namespace DDWork.Controllers
                 Material material = _context.material.Where(p => p.id == materialUnitPrice.material.id).First();
 
                 materialUnitPrice.material = material;
-                materialUnitPrice.create_time = DateTime.Now.ToString();
+                materialUnitPrice.create_time = DateTime.Now.ToString("yyyy.MM.dd HH:mm:ss");
                 _context.Add(materialUnitPrice);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -107,7 +107,7 @@ namespace DDWork.Controllers
                     Material material = _context.material.Where(p => p.id == materialUnitPrice.material.id).First();
 
                     materialUnitPrice.material = material;
-                    materialUnitPrice.create_time = DateTime.Now.ToString();
+                    materialUnitPrice.create_time = DateTime.Now.ToString("yyyy.MM.dd HH:mm:ss");
                     _context.Update(materialUnitPrice);
                     await _context.SaveChangesAsync();
                 }

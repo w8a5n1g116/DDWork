@@ -77,7 +77,7 @@ namespace DDWork.Controllers
                 user = new User();
                 user.name = userName;
                 user.ding_id = userId;
-                user.create_time = DateTime.Now.ToString() ;
+                user.create_time = DateTime.Now.ToString("yyyy.MM.dd HH:mm:ss") ;
 
                 _model.user.Add(user);
                 _model.SaveChanges();

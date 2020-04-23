@@ -59,13 +59,23 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.material_name)
-                </th>
-                <th>
                     @Html.DisplayNameFor(model => model.supply_name)
                 </th>
                 <th>
+                    @Html.DisplayNameFor(model => model.material_name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.customer_name)
+                </th>
+
+                <th>
                     @Html.DisplayNameFor(model => model.car_no)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.car_name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.car_phone)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.start_date)
@@ -73,9 +83,7 @@
                 <th>
                     @Html.DisplayNameFor(model => model.end_date)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.customer_name)
-                </th>
+
                 <th>
                     @Html.DisplayNameFor(model => model.material_weight)
                 </th>
@@ -92,7 +100,16 @@
                     @Html.DisplayNameFor(model => model.material_count_price)
                 </th>
                 <th>
+                    @Html.DisplayNameFor(model => model.carriage_should_count_price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.service_charge)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.carriage_count_price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.pay_time)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.shareholder_name)
@@ -102,48 +119,65 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.material_name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.supply_name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.car_no)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.start_date)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.end_date)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.customer_name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.material_weight)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.carriage_weight)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.material_unit_price)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.carriage_unit_price)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.material_count_price)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.carriage_count_price)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.shareholder_name)
-                    </td>
-                    
-                </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.supply_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.material_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.customer_name)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.car_no)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.car_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.car_phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.start_date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.end_date)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.material_weight)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.carriage_weight)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.material_unit_price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.carriage_unit_price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.material_count_price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.carriage_should_count_price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.service_charge)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.carriage_count_price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.pay_time)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.shareholder_name)
+                </td>
+
+            </tr>
             }
         </tbody>
     </table>

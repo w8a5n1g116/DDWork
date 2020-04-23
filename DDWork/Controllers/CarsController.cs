@@ -57,7 +57,7 @@ namespace DDWork.Controllers
         {
             if (ModelState.IsValid)
             {
-                car.create_time = DateTime.Now.ToString();
+                car.create_time = DateTime.Now.ToString("yyyy.MM.dd HH:mm:ss");
                 _context.Add(car);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -97,7 +97,7 @@ namespace DDWork.Controllers
             {
                 try
                 {
-                    car.create_time = DateTime.Now.ToString();
+                    car.create_time = DateTime.Now.ToString("yyyy.MM.dd HH:mm:ss");
                     _context.Update(car);
                     await _context.SaveChangesAsync();
                 }

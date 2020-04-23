@@ -26,14 +26,14 @@ namespace DDWork.Controllers
             ViewBag.Start = start;
             ViewBag.End = end;
 
-            DateTime startDate = DateTime.Parse(start);
-            DateTime endDate = DateTime.Parse(end);
+            //DateTime startDate = DateTime.Parse(start);
+            //DateTime endDate = DateTime.Parse(end);
 
-            string startString = startDate.ToString();
+            //string startString = startDate.ToString();
 
-            string endString = endDate.ToString();
+            //string endString = endDate.ToString();
 
-            List<Transportation> transportations = _context.transportation.Where(p => p.end_date.CompareTo(startString) >= 0 && p.end_date.CompareTo(endString) <= 0).ToList();
+            List<Transportation> transportations = _context.transportation.Where(p => p.pay_time.CompareTo(start) >= 0 && p.pay_time.CompareTo(end) <= 0).ToList();
 
             List<Shareholder> shareholders = _context.shareholder.ToList();
 
@@ -47,7 +47,7 @@ namespace DDWork.Controllers
 
                 view.shareholder_name = sh.name;
 
-                view.out_count_price = transportations.Where(p => p.shareholder.id == sh.id).Sum(p => p.carriage_count_price + p.material_count_price);
+                view.out_count_price = transportations.Where(p => p.shareholder.id == sh.id).Sum(p => p.carriage_count_price);
 
                 view.average_count_price = Convert.ToDouble((allOutCount / shareholders.Count).ToString("0.00"));
 
@@ -65,14 +65,14 @@ namespace DDWork.Controllers
             ViewBag.Start = start;
             ViewBag.End = end;
 
-            DateTime startDate = DateTime.Parse(start);
-            DateTime endDate = DateTime.Parse(end);
+            //DateTime startDate = DateTime.Parse(start);
+            //DateTime endDate = DateTime.Parse(end);
 
-            string startString = startDate.ToString();
+            //string startString = startDate.ToString();
 
-            string endString = endDate.ToString();
+            //string endString = endDate.ToString();
 
-            List<Transportation> transportations = _context.transportation.Where(p => p.end_date.CompareTo(startString) >= 0 && p.end_date.CompareTo(endString) <= 0).ToList();
+            List<Transportation> transportations = _context.transportation.Where(p => p.pay_time.CompareTo(start) >= 0 && p.pay_time.CompareTo(end) <= 0).ToList();
 
             List<Shareholder> shareholders = _context.shareholder.ToList();
 
@@ -86,7 +86,7 @@ namespace DDWork.Controllers
 
                 view.shareholder_name = sh.name;
 
-                view.out_count_price = transportations.Where(p => p.shareholder.id == sh.id).Sum(p => p.carriage_count_price + p.material_count_price);
+                view.out_count_price = transportations.Where(p => p.shareholder.id == sh.id).Sum(p => p.carriage_count_price);
 
                 view.average_count_price = Convert.ToDouble((allOutCount / shareholders.Count).ToString("0.00"));
 

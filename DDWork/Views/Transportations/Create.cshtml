@@ -14,6 +14,15 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group">
+                <label asp-for="supply.name" class="control-label"></label>
+                <select asp-for="supply.id" class="form-control">
+                    @foreach (Supply s in ViewBag.Supplies)
+                    {
+                        <option value="@s.id">@s.name</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
                 <label asp-for="customer.name" class="control-label"></label>
                 <select asp-for="customer.id" class="form-control">
                     @foreach (Customer c in ViewBag.Customers)
@@ -41,64 +50,65 @@
                 </select>
             </div>
             <div class="form-group">
-                <label asp-for="supply.name" class="control-label"></label>
-                <select asp-for="supply.id" class="form-control">
-                    @foreach (Supply s in ViewBag.Supplies)
-                    {
-                        <option value="@s.id">@s.name</option>
-                    }
-                </select>
+                <label asp-for="car.name" class="control-label"></label>
+                <input asp-for="car.name" class="form-control" disabled />
+                <span asp-validation-for="car.name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="shareholder.name" class="control-label"></label>
-                <select asp-for="shareholder.id" class="form-control">
-                    @foreach (Shareholder s in ViewBag.Shareholders)
-                    {
-                        <option value="@s.id">@s.name</option>
-                    }
-                </select>
+                <label asp-for="car.phone" class="control-label"></label>
+                <input asp-for="car.phone" class="form-control" disabled />
+                <span asp-validation-for="car.phone" class="text-danger"></span>
             </div>
-
             <div class="form-group">
                 <label asp-for="material_weight" class="control-label"></label>
                 <input asp-for="material_weight" class="form-control" />
                 <span asp-validation-for="material_weight" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="carriage_weight" class="control-label"></label>
-                <input asp-for="carriage_weight" class="form-control" />
-                <span asp-validation-for="carriage_weight" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="material_unit_price" class="control-label"></label>
-                <input asp-for="material_unit_price" disabled class="form-control" />
-                <span asp-validation-for="material_unit_price" class="text-danger"></span>
-            </div>
+
+            @*<div class="form-group">
+            <label asp-for="carriage_weight" class="control-label"></label>
+            <input asp-for="carriage_weight" class="form-control" />
+            <span asp-validation-for="carriage_weight" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="material_unit_price" class="control-label"></label>
+            <input asp-for="material_unit_price" disabled class="form-control" />
+            <span asp-validation-for="material_unit_price" class="text-danger"></span>
+        </div>*@
             <div class="form-group">
                 <label asp-for="carriage_unit_price" class="control-label"></label>
                 <input asp-for="carriage_unit_price" class="form-control" />
                 <span asp-validation-for="carriage_unit_price" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="material_count_price" class="control-label"></label>
-                <input asp-for="material_count_price" class="form-control" />
-                <span asp-validation-for="material_count_price" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="carriage_count_price" class="control-label"></label>
-                <input asp-for="carriage_count_price" class="form-control" />
-                <span asp-validation-for="carriage_count_price" class="text-danger"></span>
-            </div>
+            @*<div class="form-group">
+            <label asp-for="material_count_price" class="control-label"></label>
+            <input asp-for="material_count_price" class="form-control" />
+            <span asp-validation-for="material_count_price" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="carriage_count_price" class="control-label"></label>
+            <input asp-for="carriage_count_price" class="form-control" />
+            <span asp-validation-for="carriage_count_price" class="text-danger"></span>
+        </div>*@
             <div class="form-group">
                 <label asp-for="start_date" class="control-label"></label>
                 <input asp-for="start_date" class="form-control" />
                 <span asp-validation-for="start_date" class="text-danger"></span>
             </div>
             @*<div class="form-group">
-                <label asp-for="end_date" class="control-label"></label>
-                <input asp-for="end_date" class="form-control" />
-                <span asp-validation-for="end_date" class="text-danger"></span>
-            </div>*@
+            <label asp-for="end_date" class="control-label"></label>
+            <input asp-for="end_date" class="form-control" />
+            <span asp-validation-for="end_date" class="text-danger"></span>
+        </div>*@
+            @*<div class="form-group">
+            <label asp-for="shareholder.name" class="control-label"></label>
+            <select asp-for="shareholder.id" class="form-control">
+                @foreach (Shareholder s in ViewBag.Shareholders)
+                {
+                    <option value="@s.id">@s.name</option>
+                }
+            </select>
+        </div>*@
 
             <div class="form-group">
                 <input type="submit" value="创建" class="btn btn-primary" />
@@ -116,75 +126,67 @@
 }
 
 <script>
-    MaterailUnitPirces = new Array();
+    @*MaterailUnitPirces = new Array();
 
     @foreach (MaterialUnitPrice mup in ViewBag.MaterialUnitPrices)
     {
         <text>
     MaterailUnitPirces.push({ id: '@mup.material.id', price:@mup.price});
         </text>
+    }*@
+
+    CarArray = new Array();
+
+    @foreach (Car car in ViewBag.Cars)
+    {
+        <text>
+    CarArray.push({ id: @car.id, name:'@Html.Raw(car.name)',phone:'@car.phone'});
+        </text>
     }
 
-    $(function () {
-        changemup();
 
-        $('#material_id').change(function () {
-            changemup();
+    $(function () {
+        //changemup();
+
+        //$('#material_id').change(function () {
+        //    changemup();
+        //})
+
+        //function changemup() {
+        //    var v = $('#material_id').val();
+
+        //    $.each(MaterailUnitPirces, function (index, value) {
+        //        if (v == value.id) {
+        //            $('#material_unit_price').val(value.price);
+        //        }
+        //    })
+        //}
+
+        jQuery.datetimepicker.setLocale('zh');
+        jQuery('#start_date').datetimepicker({
+            format: 'Y.m.d',
+            value:'@DateTime.Now.ToString("yyyy.MM.dd")',
+            timepicker: false
+        });
+
+        changecar();
+
+        $('#car_id').change(function () {
+            changecar();
         })
 
-        function changemup() {
-            var v = $('#material_id').val();
+        function changecar() {
+            var v = $('#car_id').val();
 
-            $.each(MaterailUnitPirces, function (index, value) {
+            $.each(CarArray, function (index, value) {
                 if (v == value.id) {
-                    $('#material_unit_price').val(value.price);
+                    $('#car_name').val(value.name);
+                    $('#car_phone').val(value.phone);
                 }
             })
         }
 
 
-        $('#material_weight').blur(function () {
 
-            var weight = $('#material_weight').val();
-
-            var unitprice = $('#material_unit_price').val()
-
-            var count = unitprice * weight;
-
-            $('#material_count_price').val(count);
-        });
-
-        $('#carriage_weight').blur(function () {
-
-            var weight = $('#carriage_weight').val();
-
-            var unitprice = $('#carriage_unit_price').val()
-
-            var count = unitprice * weight;
-
-            $('#carriage_count_price').val(count);
-        });
-
-        $('#material_unit_price').blur(function () {
-
-            var weight = $('#material_weight').val();
-
-            var unitprice = $('#material_unit_price').val()
-
-            var count = unitprice * weight;
-
-            $('#material_count_price').val(count);
-        });
-
-        $('#carriage_unit_price').blur(function () {
-
-            var weight = $('#carriage_weight').val();
-
-            var unitprice = $('#carriage_unit_price').val()
-
-            var count = unitprice * weight;
-
-            $('#carriage_count_price').val(count);
-        });
     });
 </script>

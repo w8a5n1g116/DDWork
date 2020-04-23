@@ -14,34 +14,33 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.customer.name)
+                    @Html.DisplayNameFor(model => model.supply.name)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.material.name)
+                    @Html.DisplayNameFor(model => model.customer.name)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.car.car_no)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.supply.name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.shareholder.name)
-                </th>
+
+
                 <th>
                     @Html.DisplayNameFor(model => model.material_weight)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.carriage_weight)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.material_unit_price)
-                </th>
+                @*<th>
+            @Html.DisplayNameFor(model => model.material_unit_price)
+        </th>*@
                 <th>
                     @Html.DisplayNameFor(model => model.carriage_unit_price)
                 </th>
+                @*<th>
+            @Html.DisplayNameFor(model => model.material_count_price)
+        </th>*@
                 <th>
-                    @Html.DisplayNameFor(model => model.material_count_price)
+                    @Html.DisplayNameFor(model => model.carriage_should_count_price)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.carriage_count_price)
@@ -53,6 +52,12 @@
                     @Html.DisplayNameFor(model => model.end_date)
                 </th>
                 <th>
+                    @Html.DisplayNameFor(model => model.material.name)
+                </th>
+                @*<th>
+            @Html.DisplayNameFor(model => model.shareholder.name)
+        </th>*@
+                <th>
                     @Html.DisplayNameFor(model => model.create_time)
                 </th>
                 <th></th>
@@ -63,34 +68,34 @@
             {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.customer.name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.material.name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.car.car_no)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.supply.name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.shareholder.name)
+                    @Html.DisplayFor(modelItem => item.customer.name)
                 </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.car.car_no)
+                </td>
+
+
                 <td>
                     @Html.DisplayFor(modelItem => item.material_weight)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.carriage_weight)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.material_unit_price)
-                </td>
+                @*<td>
+            @Html.DisplayFor(modelItem => item.material_unit_price)
+        </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.carriage_unit_price)
                 </td>
+                @*<td>
+            @Html.DisplayFor(modelItem => item.material_count_price)
+        </td>*@
                 <td>
-                    @Html.DisplayFor(modelItem => item.material_count_price)
+                    @Html.DisplayFor(modelItem => item.carriage_should_count_price)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.carriage_count_price)
@@ -102,15 +107,28 @@
                     @Html.DisplayFor(modelItem => item.end_date)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.material.name)
+                </td>
+                @*<td>
+            @Html.DisplayFor(modelItem => item.shareholder.name)
+        </td>*@
+                <td>
                     @Html.DisplayFor(modelItem => item.create_time)
                 </td>
                 @*<td>
-                    <a asp-action="Edit" asp-route-id="@item.id" class="btn btn-info">编辑</a>
-                </td>*@
+            <a asp-action="Edit" asp-route-id="@item.id" class="btn btn-info">编辑</a>
+        </td>*@
                 @if (string.IsNullOrEmpty(item.end_date))
                 {
                     <td>
-                        <a asp-action="GetOver" asp-route-id="@item.id" class="btn btn-info">收货</a>
+                        <a asp-action="Edit_Receive" asp-route-id="@item.id" class="btn btn-info">收货</a>
+                    </td>
+                }
+
+                @if (item.carriage_count_price == 0 && !string.IsNullOrEmpty(item.end_date))
+                {
+                    <td>
+                        <a asp-action="Edit_Cashier" asp-route-id="@item.id" class="btn btn-info">出纳</a>
                     </td>
                 }
 

@@ -57,7 +57,7 @@ namespace DDWork.Controllers
         {
             if (ModelState.IsValid)
             {
-                expenditure.create_time = DateTime.Now.ToString();
+                expenditure.create_time = DateTime.Now.ToString("yyyy.MM.dd HH:mm:ss");
                 _context.Add(expenditure);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -97,7 +97,7 @@ namespace DDWork.Controllers
             {
                 try
                 {
-                    expenditure.create_time = DateTime.Now.ToString();
+                    expenditure.create_time = DateTime.Now.ToString("yyyy.MM.dd HH:mm:ss");
                     _context.Update(expenditure);
                     await _context.SaveChangesAsync();
                 }

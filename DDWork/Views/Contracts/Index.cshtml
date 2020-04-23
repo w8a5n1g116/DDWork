@@ -23,13 +23,28 @@
                     @Html.DisplayNameFor(model => model.weight)
                 </th>
                 <th>
+                    @Html.DisplayNameFor(model => model.unit_price)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.print_weight)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.print_price)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.fine)
+                    @Html.DisplayNameFor(model => model.should_receive_price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.real_receive_price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.debt_price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.unprint_weight)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.unprint_price)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.contract_price)
@@ -57,13 +72,28 @@
                     @Html.DisplayFor(modelItem => item.weight)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.unit_price)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.print_weight)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.print_price)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.fine)
+                    @Html.DisplayFor(modelItem => item.should_receive_price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.real_receive_price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.debt_price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.unprint_weight)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.unprint_price)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.contract_price)

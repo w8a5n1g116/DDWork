@@ -27,14 +27,14 @@ namespace DDWork.Controllers
             ViewBag.Start = start;
             ViewBag.End = end;
 
-            DateTime startDate = DateTime.Parse(start);
-            DateTime endDate = DateTime.Parse(end);
+            //DateTime startDate = DateTime.Parse(start);
+            //DateTime endDate = DateTime.Parse(end);
 
-            string startString = startDate.ToString();
+            //string startString = startDate.ToString();
 
-            string endString = endDate.ToString();
+            //string endString = endDate.ToString();
 
-            List<Transportation> transportations = _context.transportation.Where(p => p.end_date.CompareTo(startString) >=0 && p.end_date.CompareTo(endString) <= 0)
+            List<Transportation> transportations = _context.transportation.Where(p => p.pay_time.CompareTo(start) >=0 && p.pay_time.CompareTo(end) <= 0 && p.carriage_count_price != 0)
                 .Include(p => p.shareholder)
                 .Include(p => p.car)
                 .Include(p => p.material)
@@ -44,14 +44,24 @@ namespace DDWork.Controllers
 
             List<TransportationViewModel> viewList = new List<TransportationViewModel>();
 
-            foreach(var t in transportations)
+            double carriage_count_price = 0;
+            double carriage_should_count_price = 0;
+            double service_charge = 0;
+            double carriage_weight = 0;
+            double material_weight = 0;
+
+            foreach (var t in transportations)
             {
                 TransportationViewModel view = new TransportationViewModel();
 
                 view.carriage_count_price = t.carriage_count_price;
                 view.carriage_unit_price = t.carriage_unit_price;
+                view.carriage_should_count_price = t.carriage_should_count_price;
+                view.service_charge = t.service_charge;
                 view.carriage_weight = t.carriage_weight;
                 view.car_no = t.car.car_no;
+                view.car_name = t.car.name;
+                view.car_phone = t.car.phone;
                 view.customer_name = t.customer.name;
                 view.end_date = t.end_date;
                 view.material_count_price = t.material_count_price;
@@ -61,9 +71,29 @@ namespace DDWork.Controllers
                 view.shareholder_name = t.shareholder.name;
                 view.start_date = t.start_date;
                 view.supply_name = t.supply.name;
+                view.pay_time = t.pay_time;
+
+                
 
                 viewList.Add(view);
+
+                carriage_count_price += view.carriage_count_price;
+                carriage_should_count_price += view.carriage_should_count_price;
+                service_charge += view.service_charge;
+                carriage_weight += view.carriage_weight;
+                material_weight += view.material_weight;
             }
+
+            TransportationViewModel viewCount = new TransportationViewModel();
+
+            viewCount.supply_name = "合计 ==>";
+            viewCount.carriage_count_price = carriage_count_price;
+            viewCount.carriage_should_count_price = carriage_should_count_price;
+            viewCount.service_charge = service_charge;
+            viewCount.carriage_weight = carriage_weight;
+            viewCount.material_weight = material_weight;
+
+            viewList.Add(viewCount);
 
             return View(viewList);
         }
@@ -74,14 +104,14 @@ namespace DDWork.Controllers
             ViewBag.Start = start;
             ViewBag.End = end;
 
-            DateTime startDate = DateTime.Parse(start);
-            DateTime endDate = DateTime.Parse(end);
+            //DateTime startDate = DateTime.Parse(start);
+            //DateTime endDate = DateTime.Parse(end);
 
-            string startString = startDate.ToString();
+            //string startString = startDate.ToString();
 
-            string endString = endDate.ToString();
+            //string endString = endDate.ToString();
 
-            List<Transportation> transportations = _context.transportation.Where(p => p.end_date.CompareTo(startString) >= 0 && p.end_date.CompareTo(endString) <= 0)
+            List<Transportation> transportations = _context.transportation.Where(p => p.pay_time.CompareTo(start) >= 0 && p.pay_time.CompareTo(end) <= 0 && p.carriage_count_price != 0)
                 .Include(p => p.shareholder)
                 .Include(p => p.car)
                 .Include(p => p.material)
@@ -91,14 +121,24 @@ namespace DDWork.Controllers
 
             List<TransportationViewModel> viewList = new List<TransportationViewModel>();
 
+            double carriage_count_price = 0;
+            double carriage_should_count_price = 0;
+            double service_charge = 0;
+            double carriage_weight = 0;
+            double material_weight = 0;
+
             foreach (var t in transportations)
             {
                 TransportationViewModel view = new TransportationViewModel();
 
                 view.carriage_count_price = t.carriage_count_price;
                 view.carriage_unit_price = t.carriage_unit_price;
+                view.carriage_should_count_price = t.carriage_should_count_price;
+                view.service_charge = t.service_charge;
                 view.carriage_weight = t.carriage_weight;
                 view.car_no = t.car.car_no;
+                view.car_name = t.car.name;
+                view.car_phone = t.car.phone;
                 view.customer_name = t.customer.name;
                 view.end_date = t.end_date;
                 view.material_count_price = t.material_count_price;
@@ -108,9 +148,28 @@ namespace DDWork.Controllers
                 view.shareholder_name = t.shareholder.name;
                 view.start_date = t.start_date;
                 view.supply_name = t.supply.name;
+                view.pay_time = t.pay_time;
 
                 viewList.Add(view);
+
+                carriage_count_price += view.carriage_count_price;
+                carriage_should_count_price += view.carriage_should_count_price;
+                service_charge += view.service_charge;
+                carriage_weight += view.carriage_weight;
+                material_weight += view.material_weight;
+
             }
+
+            TransportationViewModel viewCount = new TransportationViewModel();
+
+            viewCount.supply_name = "合计 ==>";
+            viewCount.carriage_count_price = carriage_count_price;
+            viewCount.carriage_should_count_price = carriage_should_count_price;
+            viewCount.service_charge = service_charge;
+            viewCount.carriage_weight = carriage_weight;
+            viewCount.material_weight = material_weight;
+
+            viewList.Add(viewCount);
 
             return View(viewList);
         }

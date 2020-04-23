@@ -55,12 +55,25 @@ namespace DDWork.Models
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
-        [Display(Name = "重量")]
+        
+        [Display(Name = "结算吨位")]
         public double weight { get; set; }
-        [Display(Name = "开票重量")]
+        [Display(Name = "结算单价")]
+        public double unit_price { get; set; }
+        [Display(Name = "开票吨位")]
         public double print_weight { get; set; }
         [Display(Name = "开票金额")]
         public double print_price { get; set; }
+        [Display(Name = "应收账款")]
+        public double should_receive_price { get; set; }
+        [Display(Name = "实收账款")]
+        public double real_receive_price { get; set; }
+        [Display(Name = "欠款金额")]
+        public double debt_price { get; set; }
+        [Display(Name = "未开票吨位")]
+        public double unprint_weight { get; set; }
+        [Display(Name = "未开票金额")]
+        public double unprint_price { get; set; }
         [Display(Name = "罚款")]
         public double fine { get; set; }
         [Display(Name = "合同总价")]
@@ -118,8 +131,10 @@ namespace DDWork.Models
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
-        [Display(Name = "司机名称")]
+        [Display(Name = "司机")]
         public string name { get; set; }
+        [Display(Name = "司机电话")]
+        public string phone { get; set; }
         [Display(Name = "车牌号")]
         public string car_no { get; set; }
         [Display(Name = "载重")]
@@ -179,9 +194,9 @@ namespace DDWork.Models
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
-        [Display(Name = "原料重量")]
+        [Display(Name = "出厂吨位")]
         public double material_weight { get; set; }
-        [Display(Name = "运输重量")]
+        [Display(Name = "实收吨位")]
         public double carriage_weight { get; set; }
         [Display(Name = "原料单价")]
         public double material_unit_price { get; set; }
@@ -189,12 +204,18 @@ namespace DDWork.Models
         public double carriage_unit_price { get; set; }
         [Display(Name = "原料总价")]
         public double material_count_price { get; set; }
-        [Display(Name = "运输总价")]
+        [Display(Name = "应付运费")]
+        public double carriage_should_count_price { get; set; }
+        [Display(Name = "实付运费")]
         public double carriage_count_price { get; set; }
+        [Display(Name = "扣手续费")]
+        public double service_charge { get; set; }
         [Display(Name = "发货日期")]
         public string start_date { get; set; }
-        [Display(Name = "收货日期")]
+        [Display(Name = "到场日期")]
         public string end_date { get; set; }
+        [Display(Name = "付款时间")]
+        public string pay_time { get; set; }
         [Display(Name = "创建时间")]
         public string create_time { get; set; }
         public virtual Customer customer { get; set; }

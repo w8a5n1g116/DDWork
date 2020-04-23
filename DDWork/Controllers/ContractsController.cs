@@ -72,7 +72,7 @@ namespace DDWork.Controllers
 
                 contract.material = material;
 
-                contract.create_time = DateTime.Now.ToString();
+                contract.create_time = DateTime.Now.ToString("yyyy.MM.dd HH:mm:ss");
                 _context.Add(contract);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -124,7 +124,7 @@ namespace DDWork.Controllers
 
                     contract.material = material;
 
-                    contract.create_time = DateTime.Now.ToString();
+                    contract.create_time = DateTime.Now.ToString("yyyy.MM.dd HH:mm:ss");
                     _context.Update(contract);
                     await _context.SaveChangesAsync();
                 }

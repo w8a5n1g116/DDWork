@@ -26,27 +26,27 @@ namespace DDWork.Controllers
             ViewBag.Start = start;
             ViewBag.End = end;
 
-            DateTime startDate = DateTime.Parse(start);
-            DateTime endDate = DateTime.Parse(end);
+            //DateTime startDate = DateTime.Parse(start);
+            //DateTime endDate = DateTime.Parse(end);
 
-            string startString = startDate.ToString();
+            //string startString = startDate.ToString();
 
-            string endString = endDate.ToString();
+            //string endString = endDate.ToString();
 
-            List<Transportation> transportations = _context.transportation.Where(p => p.end_date.CompareTo(startString) >= 0 && p.end_date.CompareTo(endString) <= 0).ToList();
+            List<Transportation> transportations = _context.transportation.Where(p => p.pay_time.CompareTo(start) >= 0 && p.pay_time.CompareTo(end) <= 0).ToList();
 
-            List<Income> incomes = _context.income.Where(p => p.create_time.CompareTo(startString) >= 0 && p.create_time.CompareTo(endString) <= 0).ToList();
+            List<Income> incomes = _context.income.Where(p => p.create_time.CompareTo(start) >= 0 && p.create_time.CompareTo(end) <= 0).ToList();
 
             List<GainLossViewModel> viewList = new List<GainLossViewModel>();
 
             foreach(var t in transportations)
             {
-                GainLossViewModel view = new GainLossViewModel();
+                //GainLossViewModel view = new GainLossViewModel();
 
-                view.gain_or_loss = "支出";
-                view.item = "原料费用";
-                view.price = t.material_count_price;
-                view.date = t.end_date;
+                //view.gain_or_loss = "支出";
+                //view.item = "原料费用";
+                //view.price = t.material_count_price;
+                //view.date = t.end_date;
 
                 GainLossViewModel view2 = new GainLossViewModel();
 
@@ -55,7 +55,7 @@ namespace DDWork.Controllers
                 view2.price = t.carriage_count_price;
                 view2.date = t.end_date;
 
-                viewList.Add(view);
+                //viewList.Add(view);
                 viewList.Add(view2);
             }
 
@@ -92,27 +92,27 @@ namespace DDWork.Controllers
             ViewBag.Start = start;
             ViewBag.End = end;
 
-            DateTime startDate = DateTime.Parse(start);
-            DateTime endDate = DateTime.Parse(end);
+            //DateTime startDate = DateTime.Parse(start);
+            //DateTime endDate = DateTime.Parse(end);
 
-            string startString = startDate.ToString();
+            //string startString = startDate.ToString();
 
-            string endString = endDate.ToString();
+            //string endString = endDate.ToString();
 
-            List<Transportation> transportations = _context.transportation.Where(p => p.end_date.CompareTo(startString) >= 0 && p.end_date.CompareTo(endString) <= 0).ToList();
+            List<Transportation> transportations = _context.transportation.Where(p => p.pay_time.CompareTo(start) >= 0 && p.pay_time.CompareTo(end) <= 0).ToList();
 
-            List<Income> incomes = _context.income.Where(p => p.create_time.CompareTo(startString) >= 0 && p.create_time.CompareTo(endString) <= 0).ToList();
+            List<Income> incomes = _context.income.Where(p => p.create_time.CompareTo(start) >= 0 && p.create_time.CompareTo(end) <= 0).ToList();
 
             List<GainLossViewModel> viewList = new List<GainLossViewModel>();
 
             foreach (var t in transportations)
             {
-                GainLossViewModel view = new GainLossViewModel();
+                //GainLossViewModel view = new GainLossViewModel();
 
-                view.gain_or_loss = "支出";
-                view.item = "原料费用";
-                view.price = t.material_count_price;
-                view.date = t.end_date;
+                //view.gain_or_loss = "支出";
+                //view.item = "原料费用";
+                //view.price = t.material_count_price;
+                //view.date = t.end_date;
 
                 GainLossViewModel view2 = new GainLossViewModel();
 
@@ -121,7 +121,7 @@ namespace DDWork.Controllers
                 view2.price = t.carriage_count_price;
                 view2.date = t.end_date;
 
-                viewList.Add(view);
+                //viewList.Add(view);
                 viewList.Add(view2);
             }
 

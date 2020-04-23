@@ -83,7 +83,7 @@ namespace DDWork.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,material_weight,carriage_weight,material_unit_price,carriage_unit_price,material_count_price,carriage_count_price,start_date,end_date,customer,shareholder,car,supply,material")] Transportation transportation)
+        public async Task<IActionResult> Create([Bind("id,material_weight,carriage_weight,material_unit_price,carriage_unit_price,material_count_price,carriage_count_price,start_date,end_date,customer,shareholder,car,supply,material,carriage_should_count_price,service_charge,pay_time")] Transportation transportation)
         {
             if (ModelState.IsValid)
             {
@@ -95,10 +95,6 @@ namespace DDWork.Controllers
 
                 transportation.material = material;
 
-                Shareholder shareholder = _context.shareholder.Where(p => p.id == transportation.shareholder.id).First();
-
-                transportation.shareholder = shareholder;
-
                 Car car = _context.car.Where(p => p.id == transportation.car.id).First();
 
                 transportation.car = car;
@@ -107,7 +103,7 @@ namespace DDWork.Controllers
 
                 transportation.supply = supply;
 
-                transportation.create_time = DateTime.Now.ToString();
+                transportation.create_time = DateTime.Now.ToString("yyyy.MM.dd HH:mm:ss");
                 _context.Add(transportation);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -137,12 +133,9 @@ namespace DDWork.Controllers
             return View(transportation);
         }
 
-        // POST: Transportations/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,material_weight,carriage_weight,material_unit_price,carriage_unit_price,material_count_price,carriage_count_price,start_date,end_date,customer,shareholder,car,supply,material")] Transportation transportation)
+        public async Task<IActionResult> Edit(int id, [Bind("id,material_weight,carriage_weight,material_unit_price,carriage_unit_price,material_count_price,carriage_count_price,start_date,end_date,customer,shareholder,car,supply,material,carriage_should_count_price,service_charge,pay_time")] Transportation transportation)
         {
             if (id != transportation.id)
             {
@@ -173,8 +166,134 @@ namespace DDWork.Controllers
 
                     transportation.supply = supply;
 
-                    transportation.create_time = DateTime.Now.ToString();
+                    transportation.create_time = DateTime.Now.ToString("yyyy.MM.dd HH:mm:ss");
                     _context.Update(transportation);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!TransportationExists(transportation.id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(transportation);
+        }
+
+        public async Task<IActionResult> Edit_Receive(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var transportation = await _context.transportation.FindAsync(id);
+            if (transportation == null)
+            {
+                return NotFound();
+            }
+            ViewBag.MaterialUnitPrices = materialUnitPrices;
+            ViewBag.Customers = customers;
+            ViewBag.Materials = materials;
+            ViewBag.Shareholders = shareholders;
+            ViewBag.Cars = cars;
+            ViewBag.Supplies = supplies;
+            return View(transportation);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit_Receive(int id, [Bind("id,material_weight,carriage_weight,material_unit_price,carriage_unit_price,material_count_price,carriage_count_price,start_date,end_date,customer,shareholder,car,supply,material,carriage_should_count_price,service_charge,pay_time")] Transportation transportation)
+        {
+            if (id != transportation.id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    Transportation _trasportation = _context.transportation.Where(p => p.id == id).First();
+
+                    _trasportation.end_date = transportation.end_date;
+                    _trasportation.carriage_weight = transportation.carriage_weight;
+                    _trasportation.carriage_should_count_price = transportation.carriage_should_count_price;
+                    
+                    _context.Update(_trasportation);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!TransportationExists(transportation.id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(transportation);
+        }
+
+
+        public async Task<IActionResult> Edit_Cashier(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var transportation = await _context.transportation.FindAsync(id);
+            if (transportation == null)
+            {
+                return NotFound();
+            }
+            ViewBag.MaterialUnitPrices = materialUnitPrices;
+            ViewBag.Customers = customers;
+            ViewBag.Materials = materials;
+            ViewBag.Shareholders = shareholders;
+            ViewBag.Cars = cars;
+            ViewBag.Supplies = supplies;
+            return View(transportation);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit_Cashier(int id, [Bind("id,material_weight,carriage_weight,material_unit_price,carriage_unit_price,material_count_price,carriage_count_price,start_date,end_date,customer,shareholder,car,supply,material,carriage_should_count_price,service_charge,pay_time")] Transportation transportation)
+        {
+            if (id != transportation.id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    
+
+                    Transportation _trasportation = _context.transportation.Where(p => p.id == id).First();
+
+                    _trasportation.service_charge = transportation.service_charge;
+                    _trasportation.carriage_count_price = transportation.carriage_count_price;
+                    _trasportation.pay_time = transportation.pay_time;
+
+                    Shareholder shareholder = _context.shareholder.Where(p => p.id == transportation.shareholder.id).First();
+
+                    _trasportation.shareholder = shareholder;
+
+
+                    _context.Update(_trasportation);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -206,7 +325,7 @@ namespace DDWork.Controllers
                 return NotFound();
             }
 
-            transportation.end_date = DateTime.Now.ToString("yyyy-MM-dd");
+            transportation.end_date = DateTime.Now.ToString("yyyy.MM.dd");
 
             _context.Update(transportation);
 

@@ -46,6 +46,30 @@
                     {
                         <option value="收货员">收货员</option>
                     }
+                    @if (Model.privileges == "出纳")
+                    {
+                        <option value="出纳" selected>出纳</option>
+                    }
+                    else
+                    {
+                        <option value="出纳">出纳</option>
+                    }
+                    @if (Model.privileges == "业务经理")
+                    {
+                        <option value="业务经理" selected>业务经理</option>
+                    }
+                    else
+                    {
+                        <option value="业务经理">业务经理</option>
+                    }
+                    @if (Model.privileges == "会计")
+                    {
+                        <option value="会计" selected>会计</option>
+                    }
+                    else
+                    {
+                        <option value="会计">会计</option>
+                    }
 
                 </select>
             </div>

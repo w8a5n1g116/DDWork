@@ -1,0 +1,156 @@
+﻿@model DDWork.Models.Transportation
+
+@{
+    ViewData["Title"] = "收货";
+}
+
+    <h1>收货</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit_Receive">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id" />
+
+
+            <div class="form-group">
+                <label asp-for="supply.name" class="control-label"></label>
+                <input asp-for="supply.name" class="form-control" disabled />
+                <span asp-validation-for="supply.name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="customer.name" class="control-label"></label>
+                <input asp-for="customer.name" class="form-control" disabled />
+                <span asp-validation-for="customer.name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="material.name" class="control-label"></label>
+                <input asp-for="material.name" class="form-control" disabled />
+                <span asp-validation-for="material.name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="car.car_no" class="control-label"></label>
+                <input asp-for="car.car_no" class="form-control" disabled />
+                <span asp-validation-for="car.car_no" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="car.name" class="control-label"></label>
+                <input asp-for="car.name" class="form-control" disabled />
+                <span asp-validation-for="car.name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="car.phone" class="control-label"></label>
+                <input asp-for="car.phone" class="form-control" disabled />
+                <span asp-validation-for="car.phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="carriage_unit_price" class="control-label"></label>
+                <input asp-for="carriage_unit_price" class="form-control" disabled />
+                <span asp-validation-for="carriage_unit_price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="material_weight" class="control-label"></label>
+                <input asp-for="material_weight" class="form-control" disabled/>
+                <span asp-validation-for="material_weight" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="carriage_weight" class="control-label"></label>
+                <input asp-for="carriage_weight" class="form-control" />
+                <span asp-validation-for="carriage_weight" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="carriage_should_count_price" class="control-label"></label>
+                <input asp-for="carriage_should_count_price" class="form-control" />
+                <span asp-validation-for="carriage_should_count_price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="start_date" class="control-label"></label>
+                <input asp-for="start_date" class="form-control" disabled />
+                <span asp-validation-for="start_date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="end_date" class="control-label"></label>
+                <input asp-for="end_date" class="form-control" />
+                <span asp-validation-for="end_date" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="保存" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-info">返回列表</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<script>
+    @*MaterailUnitPirces = new Array();
+
+    @foreach (MaterialUnitPrice mup in ViewBag.MaterialUnitPrices)
+    {
+        <text>
+    MaterailUnitPirces.push({ id: '@mup.material.id', price:@mup.price});
+        </text>
+    }*@
+
+
+    $(function () {
+
+        jQuery.datetimepicker.setLocale('zh');
+        jQuery('#end_date').datetimepicker({
+            format: 'Y.m.d',
+            value:'@DateTime.Now.ToString("yyyy.MM.dd")',
+            timepicker: false
+        });
+
+        //changemup();
+
+        //$('#material_id').change(function () {
+        //    changemup();
+        //})
+
+        //function changemup() {
+        //    var v = $('#material_id').val();
+
+        //    $.each(MaterailUnitPirces, function (index, value) {
+        //        if (v == value.id) {
+        //            $('#material_unit_price').val(value.price);
+        //        }
+        //    })
+        //}
+
+
+        $('#carriage_unit_price').blur(function () {
+
+            var weight = $('#carriage_weight').val();
+
+            var unitprice = $('#carriage_unit_price').val()
+
+            var count = unitprice * weight;
+
+            $('#carriage_should_count_price').val(count);
+        });
+
+        $('#carriage_weight').blur(function () {
+
+            var weight = $('#carriage_weight').val();
+
+            var unitprice = $('#carriage_unit_price').val()
+
+            var count = unitprice * weight;
+
+            $('#carriage_should_count_price').val(count);
+        });
+
+    });
+</script>

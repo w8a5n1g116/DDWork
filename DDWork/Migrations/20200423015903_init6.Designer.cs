@@ -3,14 +3,16 @@ using System;
 using DDWork.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DDWork.Migrations
 {
     [DbContext(typeof(Model))]
-    partial class ModelModelSnapshot : ModelSnapshot
+    [Migration("20200423015903_init6")]
+    partial class init6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -64,9 +66,6 @@ namespace DDWork.Migrations
                     b.Property<int?>("customerid")
                         .HasColumnType("int");
 
-                    b.Property<double>("debt_price")
-                        .HasColumnType("double");
-
                     b.Property<string>("delivery_date")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
@@ -80,21 +79,6 @@ namespace DDWork.Migrations
                         .HasColumnType("double");
 
                     b.Property<double>("print_weight")
-                        .HasColumnType("double");
-
-                    b.Property<double>("real_receive_price")
-                        .HasColumnType("double");
-
-                    b.Property<double>("should_receive_price")
-                        .HasColumnType("double");
-
-                    b.Property<double>("unit_price")
-                        .HasColumnType("double");
-
-                    b.Property<double>("unprint_price")
-                        .HasColumnType("double");
-
-                    b.Property<double>("unprint_weight")
                         .HasColumnType("double");
 
                     b.Property<double>("weight")
@@ -389,9 +373,6 @@ namespace DDWork.Migrations
                     b.Property<int?>("materialid")
                         .HasColumnType("int");
 
-                    b.Property<string>("pay_time")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
                     b.Property<double>("service_charge")
                         .HasColumnType("double");
 
@@ -425,19 +406,10 @@ namespace DDWork.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("car_name")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
                     b.Property<string>("car_no")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("car_phone")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
                     b.Property<double>("carriage_count_price")
-                        .HasColumnType("double");
-
-                    b.Property<double>("carriage_should_count_price")
                         .HasColumnType("double");
 
                     b.Property<double>("carriage_unit_price")
@@ -462,12 +434,6 @@ namespace DDWork.Migrations
                         .HasColumnType("double");
 
                     b.Property<double>("material_weight")
-                        .HasColumnType("double");
-
-                    b.Property<string>("pay_time")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<double>("service_charge")
                         .HasColumnType("double");
 
                     b.Property<string>("shareholder_name")

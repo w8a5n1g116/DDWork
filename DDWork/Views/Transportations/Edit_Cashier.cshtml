@@ -1,0 +1,176 @@
+﻿@model DDWork.Models.Transportation
+
+@{
+    ViewData["Title"] = "出纳";
+}
+
+    <h1>出纳</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit_Cashier">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id" />
+
+
+            <div class="form-group">
+                <label asp-for="supply.name" class="control-label"></label>
+                <input asp-for="supply.name" class="form-control" disabled />
+                <span asp-validation-for="supply.name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="customer.name" class="control-label"></label>
+                <input asp-for="customer.name" class="form-control" disabled />
+                <span asp-validation-for="customer.name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="material.name" class="control-label"></label>
+                <input asp-for="material.name" class="form-control" disabled />
+                <span asp-validation-for="material.name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="car.car_no" class="control-label"></label>
+                <input asp-for="car.car_no" class="form-control" disabled />
+                <span asp-validation-for="car.car_no" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="car.name" class="control-label"></label>
+                <input asp-for="car.name" class="form-control" disabled />
+                <span asp-validation-for="car.name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="car.phone" class="control-label"></label>
+                <input asp-for="car.phone" class="form-control" disabled />
+                <span asp-validation-for="car.phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="carriage_unit_price" class="control-label"></label>
+                <input asp-for="carriage_unit_price" class="form-control" disabled />
+                <span asp-validation-for="carriage_unit_price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="carriage_weight" class="control-label"></label>
+                <input asp-for="carriage_weight" class="form-control" disabled />
+                <span asp-validation-for="carriage_weight" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="carriage_should_count_price" class="control-label"></label>
+                <input asp-for="carriage_should_count_price" class="form-control" disabled />
+                <span asp-validation-for="carriage_should_count_price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="start_date" class="control-label"></label>
+                <input asp-for="start_date" class="form-control" disabled />
+                <span asp-validation-for="start_date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="end_date" class="control-label"></label>
+                <input asp-for="end_date" class="form-control" disabled />
+                <span asp-validation-for="end_date" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="service_charge" class="control-label"></label>
+                <input asp-for="service_charge" class="form-control" />
+                <span asp-validation-for="service_charge" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="carriage_count_price" class="control-label"></label>
+                <input asp-for="carriage_count_price" class="form-control" />
+                <span asp-validation-for="carriage_count_price" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="pay_time" class="control-label"></label>
+                <input asp-for="pay_time" class="form-control" />
+                <span asp-validation-for="pay_time" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="shareholder.name" class="control-label"></label>
+                <select asp-for="shareholder.id" class="form-control">
+                    @foreach (Shareholder s in ViewBag.Shareholders)
+                    {
+                        @if (Model.shareholder != null && s.id == Model.shareholder.id)
+                        {
+                            <option value="@s.id" selected>@s.name</option>
+                        }
+                        else
+                        {
+                            <option value="@s.id">@s.name</option>
+                        }
+
+                    }
+                </select>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="保存" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-info">返回列表</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<script>
+    @*MaterailUnitPirces = new Array();
+
+    @foreach (MaterialUnitPrice mup in ViewBag.MaterialUnitPrices)
+    {
+        <text>
+    MaterailUnitPirces.push({ id: '@mup.material.id', price:@mup.price});
+        </text>
+    }*@
+
+
+    $(function () {
+        jQuery.datetimepicker.setLocale('zh');
+        jQuery('#pay_time').datetimepicker({
+            format: 'Y.m.d',
+            value:'@DateTime.Now.ToString("yyyy.MM.dd")',
+            timepicker: false
+        });
+
+        //changemup();
+
+        //$('#material_id').change(function () {
+        //    changemup();
+        //})
+
+        //function changemup() {
+        //    var v = $('#material_id').val();
+
+        //    $.each(MaterailUnitPirces, function (index, value) {
+        //        if (v == value.id) {
+        //            $('#material_unit_price').val(value.price);
+        //        }
+        //    })
+        //}
+
+
+        $('#service_charge').blur(function () {
+
+            var service_charge = $('#service_charge').val();
+
+            var carriage_should_count_price = $('#carriage_should_count_price').val()
+
+            var count = carriage_should_count_price - service_charge;
+
+            $('#carriage_count_price').val(count);
+        });
+
+
+    });
+</script>
